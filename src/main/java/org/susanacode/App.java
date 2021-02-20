@@ -264,58 +264,6 @@ public class App
 
     }
 
-//
-//    //calling the retrieve table
-//    private static JSONObject retrieveData() {
-//
-//        //call sessionfactory object to access session
-//        SessionFactory sf = getConfiguration();
-//        Session session = sf.openSession();
-//        session.beginTransaction();
-//
-//        Query q1 = session.createQuery("SELECT s FROM Students s INNER JOIN FETCH s.courses c");
-//        List<Students> studRecord = q1.list();
-//
-//        System.out.println("**************************************************************");
-//        for (Students s1: studRecord){
-//            System.out.println(s1.getName() + " " + s1.getAge() + s1.getGender() + s1.getCourses());
-//
-//        }
-//
-//        System.out.println("**************************************************************");
-//
-//        //read the the records with a hibernate fetch statement
-//       // Query query = session.createQuery("from Students s inner join Course c where s.id = c.id");
-//        Query query = session.createQuery("from Students");
-//        List<Students> stud = query.list();
-//
-//        System.out.println("---------------" + stud);
-//        for (Students s: stud){
-//            System.out.println(s);
-//        }
-//
-//
-//
-//
-//        //create a json object
-//        JSONObject jsonObj = new JSONObject();
-//        JSONArray jsonArray = new JSONArray();
-//
-//        jsonArray.add(stud);
-//        jsonObj.put("Student_Records", jsonArray);
-//
-//        session.getTransaction().commit();
-//        session.close();
-//
-//        return jsonObj;
-//    }
-
-
-
-
-
-
-
     //connections
     protected void getConfiguration(){
 
@@ -334,31 +282,6 @@ public class App
     protected void exit(){
         sessionFactory.close();
     }
-
-
-    //using hibernate Programmatic Configuration
-
-    protected void getConfiguration_without_using_hibernate_configurationXML(){
-
-        Configuration config = new Configuration();
-
-        config.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-        config.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/schoolsystem");
-        config.setProperty("hibernate.connection.username", "root");
-        config.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-        config.setProperty("hibernate.useUnicode", "true");
-//        config.setProperty("hibernate.show_sql", "true");
-        config.setProperty("hibernate.hbm2ddl.auto","update");
-
-        config.addAnnotatedClass(Students.class);
-        config.addAnnotatedClass(Course.class);
-        config.addAnnotatedClass(Professor.class);
-        sessionFactory = config.buildSessionFactory();
-
-    }
-
-
-
 
 
 
